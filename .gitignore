@@ -1,0 +1,41 @@
+# Virtual environment
+venv/
+env/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Django settings (local secrets)
+.env
+*.sqlite3
+db.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Compiled files
+*.class
+
+# Editor & OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Migrations (optional, you may keep them in version control)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Pytest & Coverage reports
+.coverage
+htmlcov/
+*.cover
+nosetests.xml
+coverage.xml
+
+# Cache files
+__pycache__/
+*.py[cod]
