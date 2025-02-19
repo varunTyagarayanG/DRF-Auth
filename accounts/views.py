@@ -6,6 +6,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework.views import APIView
+
 User = get_user_model()
 
 class RegisterView(CreateAPIView):
@@ -22,3 +24,15 @@ class LoginView(TokenObtainPairView):
 
 def protected_view(request):
     return Response({"message": "You have access to this protected route"}, status=200)
+
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Successfully logged out"}, status=200)
+        except Exception as e:
+            return Response({"error": "Invalid token"}, status=400)
